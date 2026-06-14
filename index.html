@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoodleHouse | Premium Artisanal Ramen Bar</title>
+    <meta name="description" content="Experience the art of authentic Japanese ramen at NoodleHouse. 24-hour slow-simmered broth, hand-crafted noodles, and cozy atmospheric dining. View our menu and book your experience.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Outfit:wght@300;400;500;700;800&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet.js (For Dark-Themed Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Noodle Canvas Cursor -->
+    <canvas id="noodle-canvas"></canvas>
+
+    <!-- Noise Overlay for Cinematic Texture -->
+    <div class="noise-overlay"></div>
+
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="logo-kanji">麺</span>
+                <span class="logo-text">NOODLE<span>HOUSE</span></span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="#about" class="nav-link">Our Story</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#offers" class="nav-link">Offers</a>
+                <a href="#reviews" class="nav-link">Reviews</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#faq" class="nav-link">FAQs</a>
+                <a href="#location" class="nav-link">Find Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-primary btn-nav-reserve" onclick="scrollToSection('#location')">
+                    <span class="btn-text">Order Now</span>
+                    <span class="btn-icon"><i data-lucide="chevron-right"></i></span>
+                </button>
+                <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav">
+        <nav class="mobile-nav-links">
+            <a href="#about" class="mobile-nav-link">Our Story</a>
+            <a href="#menu" class="mobile-nav-link">Menu</a>
+            <a href="#offers" class="mobile-nav-link">Offers</a>
+            <a href="#reviews" class="mobile-nav-link">Reviews</a>
+            <a href="#gallery" class="mobile-nav-link">Gallery</a>
+            <a href="#faq" class="mobile-nav-link">FAQs</a>
+            <a href="#location" class="mobile-nav-link">Find Us</a>
+        </nav>
+        <button class="btn btn-primary" style="margin-top: 2rem; width: 100%;" onclick="scrollToSection('#location')">Order / Reserve</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-wrapper">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-parallax-bg" style="background-image: url('assets/interior_hero.jpg');"></div>
+        </div>
+
+        <div class="hero-content">
+            <!-- Left Side: Editorial Content -->
+            <div class="hero-text-wrap" data-speed="-0.15">
+                <div class="hero-brand-badge">
+                    <span class="badge-dot"></span>
+                    <span>EST. 2026 • TOKYO TRADITION</span>
+                </div>
+                <h1 class="hero-title">
+                    Simmered 24 Hours. <br>
+                    <span class="highlight-serif">Crafted for a Moment.</span>
+                </h1>
+                <p class="hero-subtitle">Every bowl is an artisanal masterpiece built over a 24-hour slow simmer, served hot in a modern cozy atmosphere.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('#menu')">
+                        <span>Explore Menu</span>
+                        <i data-lucide="utensils-cross"></i>
+                    </button>
+                    <button class="btn btn-outline" onclick="scrollToSection('#about')">
+                        <span>Our Story</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Dual-Image Editorial Composition -->
+            <div class="hero-media-composition">
+                <div class="hero-media-frame main-frame" data-speed="0.1">
+                    <img src="assets/ramen_vegan.jpg" alt="Artisanal Ramen Close-up" class="hero-media-img">
+                    <div class="frame-overlay"></div>
+                </div>
+                <div class="hero-media-frame offset-frame" data-speed="-0.08">
+                    <img src="assets/gallery_int_1.jpg" alt="Cozy Dining Atmosphere" class="hero-media-img">
+                    <div class="frame-overlay"></div>
+                </div>
+                <div class="hero-decor-badge" data-speed="0.15">
+                    <span class="decor-kanji">拉麺</span>
+                    <span class="decor-lbl">Art of Noodle</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Overlapping Image Collage (Left) -->
+                <div class="about-visual scroll-reveal">
+                    <div class="collage-container">
+                        <div class="collage-item main-img-wrap">
+                            <img src="assets/chef_craft.jpg" alt="Chef crafting handmade ramen noodles" class="collage-img main-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="collage-item float-img-wrap">
+                            <img src="assets/gallery_craft_1.jpg" alt="Noodle Stretching" class="collage-img float-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="collage-decor-glow"></div>
+                    </div>
+                    <div class="stat-badge">
+                        <span class="stat-num">24h</span>
+                        <span class="stat-lbl">Broth Simmer</span>
+                    </div>
+                </div>
+
+                <!-- Editorial Content (Right) -->
+                <div class="about-content scroll-reveal">
+                    <div class="section-header">
+                        <span class="section-tag">OUR HERITAGE • 伝統</span>
+                        <h2 class="section-title">Noodles with Purpose.<br>Broth with Soul.</h2>
+                    </div>
+                    
+                    <p class="about-highlight-text">
+                        We don't cook. We perform a ritual. Every bowl is an hand-crafted masterpiece simmered in tradition.
+                    </p>
+                    
+                    <p class="about-text-p">
+                        At dawn, our Master Chefs prepare the stove for the sacred 24-hour pork bone broth simmer, extracting pure rich umami. We pull our premium Hokkaido noodles fresh by hand daily to ensure the perfect chew.
+                    </p>
+                    
+                    <div class="craft-pillars">
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="flame"></i></div>
+                            <h4>24h Simmer</h4>
+                            <p>Rich, milky dashi marrow broth</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="wheat"></i></div>
+                            <h4>Hokkaido Wheat</h4>
+                            <p>Hand-pulled daily with perfect Koshi chew</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon"><i data-lucide="sparkles"></i></div>
+                            <h4>Secret Tare</h4>
+                            <p>Triple-aged shoyu & dashi blend</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-header text-center scroll-reveal">
+                <span class="section-tag">OUR SPECIALTIES</span>
+                <h2 class="section-title">The Culinary Ritual</h2>
+                <p class="section-subtitle">Select from our artisanal ramen bowls, crafted appetizers, and house-brewed refreshments.</p>
+            </div>
+
+            <!-- Menu Filter Categories -->
+            <div class="menu-tabs scroll-reveal">
+                <button class="menu-tab active" data-category="all">
+                    <span>All Offerings</span>
+                </button>
+                <button class="menu-tab" data-category="ramen">
+                    <span>Signature Ramen</span>
+                </button>
+                <button class="menu-tab" data-category="appetizers">
+                    <span>House Starters</span>
+                </button>
+                <button class="menu-tab" data-category="drinks">
+                    <span>Beverages & Sake</span>
+                </button>
+                <button class="menu-tab" data-category="desserts">
+                    <span>Desserts</span>
+                </button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid">
+                <!-- Menu Item 1: Tonkotsu Ramen -->
+                <div class="menu-card" data-category="ramen">
+                    <div class="menu-img-wrap">
+                        <img src="assets/ramen_tonkotsu.jpg" alt="Black Garlic Tonkotsu Ramen" class="menu-img">
+                        <div class="card-glow"></div>
+                        <span class="menu-card-tag hot-tag">Chef's Signature</span>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Black Garlic Tonkotsu</h3>
+                            <span class="menu-item-price">$18.50</span>
+                        </div>
+                        <p class="menu-item-desc">Rich Kurobuta pork bone broth simmered for 24 hours, black garlic oil (Mayu), chashu pork belly, soft wood ear mushrooms, soft-boiled ajitama egg, and scallions.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag spicy"><i data-lucide="flame"></i> Mild Spicy</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 10m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('tonkotsu')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2: Spicy Miso Ramen -->
+                <div class="menu-card" data-category="ramen">
+                    <div class="menu-img-wrap">
+                        <img src="assets/ramen_spicy.jpg" alt="Spicy Miso Ramen" class="menu-img">
+                        <div class="card-glow"></div>
+                        <span class="menu-card-tag">Popular</span>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Chili Inferno Miso</h3>
+                            <span class="menu-item-price">$19.00</span>
+                        </div>
+                        <p class="menu-item-desc">Rich miso broth blended with toasted sesame paste and house chili blend, minced spicy pork, bamboo shoots, soft-boiled egg, and dynamic chili shreds.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag spicy-hardcore"><i data-lucide="flame"></i> Very Spicy</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 12m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('spicy-miso')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3: Shoyu Ramen -->
+                <div class="menu-card" data-category="ramen">
+                    <div class="menu-img-wrap">
+                        <img src="assets/ramen_shoyu.jpg" alt="Truffle Shoyu Ramen" class="menu-img">
+                        <div class="card-glow"></div>
+                        <span class="menu-card-tag premium-tag">Premium</span>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Truffle Shoyu Dashi</h3>
+                            <span class="menu-item-price">$21.50</span>
+                        </div>
+                        <p class="menu-item-desc">Clear chicken and seafood dashi, aged soy tare, slow-cooked duck breast chashu, black truffle paste, marinated bamboo shoots, and fresh chives.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag"><i data-lucide="check"></i> Umami Bomb</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 10m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('truffle-shoyu')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 4: Vegan Harvest Ramen -->
+                <div class="menu-card" data-category="ramen">
+                    <div class="menu-img-wrap">
+                        <img src="assets/ramen_vegan.jpg" alt="Vegan Harvest Ramen" class="menu-img">
+                        <div class="card-glow"></div>
+                        <span class="menu-card-tag veggie-tag">Vegan</span>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Vegan Sesame Harvest</h3>
+                            <span class="menu-item-price">$17.50</span>
+                        </div>
+                        <p class="menu-item-desc">Creamy roasted sesame and oat milk broth, organic wave noodles, roasted king oyster mushrooms, dynamic charred bok choy, sweet corn, and chili oil drizzle.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag veg"><i data-lucide="leaf"></i> 100% Vegan</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 8m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('vegan-harvest')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 5: Crispy Gyoza -->
+                <div class="menu-card" data-category="appetizers">
+                    <div class="menu-img-wrap">
+                        <img src="assets/gyoza.jpg" alt="Pork & Chive Gyoza" class="menu-img">
+                        <div class="card-glow"></div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Hand-Folded Gyoza</h3>
+                            <span class="menu-item-price">$8.50</span>
+                        </div>
+                        <p class="menu-item-desc">Pan-seared pork and chive dumplings with a crispy lace bottom, served with our house black vinegar and garlic dipping sauce. (5 pieces)</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag"><i data-lucide="award"></i> Handmade</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 8m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('gyoza')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 6: Karaage Chicken -->
+                <div class="menu-card" data-category="appetizers">
+                    <div class="menu-img-wrap">
+                        <img src="assets/karaage.jpg" alt="Chicken Karaage" class="menu-img">
+                        <div class="card-glow"></div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Tokyo Crispy Karaage</h3>
+                            <span class="menu-item-price">$9.50</span>
+                        </div>
+                        <p class="menu-item-desc">Juicy double-fried garlic soy marinated chicken chunks, served with a squeeze of fresh lemon and spicy yuzu kosho kewpie mayo.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag"><i data-lucide="sparkles"></i> Crispy</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 7m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('karaage')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 7: Craft Sake Flight -->
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img-wrap">
+                        <img src="assets/sake.jpg" alt="Craft Sake Flight" class="menu-img">
+                        <div class="card-glow"></div>
+                        <span class="menu-card-tag premium-tag">Premium</span>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">House Craft Sake Flight</h3>
+                            <span class="menu-item-price">$16.00</span>
+                        </div>
+                        <p class="menu-item-desc">A selection of three premium Japanese sakes: Junmai Daiginjo (fruity), Honjozo (dry), and Nigori (creamy/unfiltered), 2oz pours each.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag"><i data-lucide="glass-water"></i> Alcohol 15%</span>
+                            <span class="meta-tag"><i data-lucide="info"></i> Pairing: Truffle Shoyu</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('sake-flight')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 8: Matcha Tiramisu -->
+                <div class="menu-card" data-category="desserts">
+                    <div class="menu-img-wrap">
+                        <img src="assets/matcha_tiramisu.jpg" alt="Matcha Tiramisu" class="menu-img">
+                        <div class="card-glow"></div>
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3 class="menu-item-title">Uji Matcha Tiramisu</h3>
+                            <span class="menu-item-price">$7.50</span>
+                        </div>
+                        <p class="menu-item-desc">Light and airy ladyfingers soaked in ceremonial grade Uji matcha, layered with silky mascarpone cream, and dusted with matcha powder.</p>
+                        <div class="menu-item-meta">
+                            <span class="meta-tag"><i data-lucide="smile"></i> Sweet & Bitter</span>
+                            <span class="meta-tag"><i data-lucide="clock"></i> Prep: 5m</span>
+                        </div>
+                        <button class="btn btn-card-details" onclick="openMenuDetails('matcha')">
+                            <span>Customize & Order</span>
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Modal for Customization / Ordering -->
+    <div class="menu-modal" id="menu-detail-modal">
+        <div class="modal-overlay" onclick="closeMenuDetails()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeMenuDetails()"><i data-lucide="x"></i></button>
+            <div class="modal-body-grid">
+                <div class="modal-image-area">
+                    <img src="" alt="" id="modal-item-img">
+                    <div class="modal-image-overlay"></div>
+                </div>
+                <div class="modal-info-area">
+                    <span class="modal-item-category" id="modal-item-category">Signature Ramen</span>
+                    <h3 class="modal-item-title" id="modal-item-title">Black Garlic Tonkotsu</h3>
+                    <div class="modal-item-price" id="modal-item-price">$18.50</div>
+                    <p class="modal-item-description" id="modal-item-desc">Detailed item description goes here. Simmered for 24 hours...</p>
+                    
+                    <div class="customization-options">
+                        <div class="option-group">
+                            <label class="option-label">Choose Noodle Firmness</label>
+                            <div class="option-selectors">
+                                <label class="custom-radio">
+                                    <input type="radio" name="noodle" value="soft">
+                                    <span>Soft (Yawa)</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="noodle" value="medium" checked>
+                                    <span>Normal (Futsuu)</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="noodle" value="firm">
+                                    <span>Firm (Kata)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Spice Level</label>
+                            <div class="option-selectors">
+                                <label class="custom-radio">
+                                    <input type="radio" name="spice" value="0">
+                                    <span>None</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="spice" value="1" checked>
+                                    <span>Mild</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="spice" value="2">
+                                    <span>Spicy 🔥</span>
+                                </label>
+                                <label class="custom-radio">
+                                    <input type="radio" name="spice" value="3">
+                                    <span>Hellfire 🔥🔥</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Extra Toppings (+$2.00 each)</label>
+                            <div class="option-checkboxes">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="toppings" value="egg">
+                                    <span>Ajitama Egg</span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="toppings" value="chashu">
+                                    <span>Extra Pork Belly Chashu</span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="toppings" value="bamboo">
+                                    <span>Menma (Bamboo)</span>
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="toppings" value="norii">
+                                    <span>Nori Seaweed</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="quantity-control">
+                            <button onclick="changeQty(-1)"><i data-lucide="minus"></i></button>
+                            <span id="item-quantity">1</span>
+                            <button onclick="changeQty(1)"><i data-lucide="plus"></i></button>
+                        </div>
+                        <button class="btn btn-primary btn-add-order" onclick="addToOrder()">
+                            <span>Add to Order</span>
+                            <span id="modal-order-total">$18.50</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offers Section -->
+    <section class="offers-section" id="offers">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="section-tag">LIMITED OFFERS</span>
+                <h2 class="section-title">Special Gatherings & Pairings</h2>
+                <p class="section-subtitle">We regularly craft unique culinary experiences. Check out our ongoing kitchen happenings.</p>
+            </div>
+
+            <!-- Offers Slider Grid -->
+            <div class="offers-grid">
+                <!-- Offer 1 -->
+                <div class="offer-card">
+                    <div class="offer-img-wrap">
+                        <img src="assets/offer_midnight.jpg" alt="Midnight Ramen Club">
+                        <div class="offer-badge">10PM - 1AM</div>
+                    </div>
+                    <div class="offer-details">
+                        <span class="offer-term">MONDAY TO THURSDAY</span>
+                        <h3>The Midnight Ramen Club</h3>
+                        <p>Enjoy any Signature Ramen paired with a cold Asahi draft beer for only $20. Perfect comfort food for the night owls.</p>
+                        <div class="offer-footer">
+                            <span class="offer-savings">Save $6.50</span>
+                            <button class="btn btn-text-icon" onclick="scrollToSection('#location')">
+                                <span>Reserve Counter</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="offer-card">
+                    <div class="offer-img-wrap">
+                        <img src="assets/offer_gyoza.jpg" alt="Golden Hour Combo">
+                        <div class="offer-badge">4PM - 6PM</div>
+                    </div>
+                    <div class="offer-details">
+                        <span class="offer-term">DAILY HAPPY HOUR</span>
+                        <h3>Golden Hour Gyoza Combo</h3>
+                        <p>Order a craft sake flight or highball cocktail and get a basket of hand-folded crispy gyoza dumplings at half price.</p>
+                        <div class="offer-footer">
+                            <span class="offer-savings">50% Off Dumplings</span>
+                            <button class="btn btn-text-icon" onclick="scrollToSection('#location')">
+                                <span>Learn More</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offer 3 -->
+                <div class="offer-card">
+                    <div class="offer-img-wrap">
+                        <img src="assets/offer_tasting.jpg" alt="Umami Tasting Menu">
+                        <div class="offer-badge">ALL DAY WEEKENDS</div>
+                    </div>
+                    <div class="offer-details">
+                        <span class="offer-term">WEEKEND SPECIAL</span>
+                        <h3>The Master Umami Tasting</h3>
+                        <p>A curated course menu including one mini starter, any ramen of your choice, a customized sake pairing, and a matcha tiramisu.</p>
+                        <div class="offer-footer">
+                            <span class="offer-savings">$35 Per Person</span>
+                            <button class="btn btn-text-icon" onclick="scrollToSection('#location')">
+                                <span>Book Experience</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="reviews-bg-shapes">
+            <div class="shape circle-1"></div>
+            <div class="shape circle-2"></div>
+        </div>
+        <div class="container">
+            <div class="reviews-top-row scroll-reveal">
+                <div class="section-header">
+                    <span class="section-tag">VOICES OF THE TABLE</span>
+                    <h2 class="section-title">Shared Culinary Stories</h2>
+                </div>
+                <div class="google-rating-card">
+                    <img src="assets/google_logo.svg" alt="Google Logo" class="google-logo">
+                    <span class="google-rating-text"><strong>4.9</strong> Google Reviews</span>
+                    <div class="stars">
+                        <i data-lucide="star" class="fill"></i>
+                        <i data-lucide="star" class="fill"></i>
+                        <i data-lucide="star" class="fill"></i>
+                        <i data-lucide="star" class="fill"></i>
+                        <i data-lucide="star" class="fill"></i>
+                    </div>
+                    <span class="review-count">(1,240 Reviews)</span>
+                </div>
+            </div>
+
+            <!-- Reviews Carousel Container -->
+            <div class="reviews-carousel-wrapper scroll-reveal">
+                <div class="reviews-track">
+                    
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="assets/user_1.jpg" alt="Kenji Sato" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Kenji Sato</h4>
+                                    <span class="reviewer-title">Local Guide • 45 reviews</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge"><i data-lucide="badge-check"></i> Verified</span>
+                        </div>
+                        <div class="review-rating">
+                            <div class="stars">
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                            </div>
+                            <span class="review-date">3 days ago</span>
+                        </div>
+                        <p class="review-content-text">
+                            "As someone who lived in Tokyo for 5 years, this is the first place in the city that genuinely replicates the soul of a real back-alley ramen shop. The Black Garlic Tonkotsu broth is incredibly rich and full of body. Absolute perfection!"
+                        </p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="assets/user_2.jpg" alt="Sarah Miller" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Sarah Miller</h4>
+                                    <span class="reviewer-title">Food Blogger</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge"><i data-lucide="badge-check"></i> Verified</span>
+                        </div>
+                        <div class="review-rating">
+                            <div class="stars">
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                            </div>
+                            <span class="review-date">1 week ago</span>
+                        </div>
+                        <p class="review-content-text">
+                            "The noodle texture is unmatched. You can see the chefs pull them through the glass counter window. The truffle shoyu ramen has a deep earthy umami that blew my mind. Pair it with the craft sake flight. Service was friendly and quick!"
+                        </p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <img src="assets/user_3.jpg" alt="Michael Chen" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Michael Chen</h4>
+                                    <span class="reviewer-title">Google Reviewer</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge"><i data-lucide="badge-check"></i> Verified</span>
+                        </div>
+                        <div class="review-rating">
+                            <div class="stars">
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                                <i data-lucide="star" class="fill"></i>
+                            </div>
+                            <span class="review-date">2 weeks ago</span>
+                        </div>
+                        <p class="review-content-text">
+                            "Phenomenal food and vibe. The dark cozy aesthetics with the glowing lanterns and rising steam make it feel like you've stepped into another world. The vegan harvest ramen is the best vegan ramen I've ever had in my life."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn"><i data-lucide="chevron-left"></i></button>
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="carousel-btn next-btn"><i data-lucide="chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Write Review Call to action -->
+            <div class="write-review-cta text-center scroll-reveal">
+                <p>Have you dined with us? We'd love to hear about your experience.</p>
+                <a href="https://google.com" target="_blank" class="btn btn-outline">
+                    <i data-lucide="edit-3"></i>
+                    <span>Write a Google Review</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header text-center scroll-reveal">
+                <span class="section-tag">SNAP SHOTS</span>
+                <h2 class="section-title">The Ramen Aesthetics</h2>
+                <p class="section-subtitle">Visual highlights of our kitchen craft, restaurant interior, and plated masterworks.</p>
+            </div>
+
+            <!-- Gallery Filter Buttons -->
+            <div class="gallery-filters scroll-reveal">
+                <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+                <button class="gallery-filter-btn" data-filter="dishes">Bowls & Starters</button>
+                <button class="gallery-filter-btn" data-filter="craft">The Craft</button>
+                <button class="gallery-filter-btn" data-filter="interior">Atmosphere</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="gallery-grid scroll-reveal">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item" data-category="dishes" onclick="openLightbox(0)">
+                    <img src="assets/gallery_dish_1.jpg" alt="Rich Tonkotsu Noodles Close-Up" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>Signature Bowls</span>
+                            <h4>Pork Belly Caramelization</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item" data-category="craft" onclick="openLightbox(1)">
+                    <img src="assets/gallery_craft_1.jpg" alt="Handmaking Ramen Noodles" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>The Craft</span>
+                            <h4>Noodle Stretching Ritual</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" data-category="interior" onclick="openLightbox(2)">
+                    <img src="assets/gallery_int_1.jpg" alt="Cozy Japanese Wooden Bar Counter" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>Atmosphere</span>
+                            <h4>Wooden Counter & Lanterns</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" data-category="dishes" onclick="openLightbox(3)">
+                    <img src="assets/gallery_dish_2.jpg" alt="Spicy Ramen Broth Drizzle" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>Signature Bowls</span>
+                            <h4>House Chili Oil Infusion</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item" data-category="craft" onclick="openLightbox(4)">
+                    <img src="assets/gallery_craft_2.jpg" alt="Chef preparing broth" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>The Craft</span>
+                            <h4>Broth Master Strain</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" data-category="interior" onclick="openLightbox(5)">
+                    <img src="assets/gallery_int_2.jpg" alt="Noodlehouse storefront glow" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <div class="gallery-zoom-icon"><i data-lucide="maximize-2"></i></div>
+                        <div class="gallery-info">
+                            <span>Atmosphere</span>
+                            <h4>Exterior Noren Curtains</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal for Gallery -->
+    <div class="lightbox" id="gallery-lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x"></i></button>
+        <button class="lightbox-btn lightbox-prev" onclick="navigateLightbox(-1)"><i data-lucide="chevron-left"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption">Caption text here...</div>
+        </div>
+        <button class="lightbox-btn lightbox-next" onclick="navigateLightbox(1)"><i data-lucide="chevron-right"></i></button>
+    </div>
+
+    <!-- FAQs Section (Japanese sliding style accordions) -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header text-center scroll-reveal">
+                <span class="section-tag">GOT QUESTIONS?</span>
+                <h2 class="section-title">Frequently Asked Curiosities</h2>
+                <p class="section-subtitle">Read details about our cooking practices, reservations, dietary options, and takeout.</p>
+            </div>
+
+            <div class="faq-container scroll-reveal">
+                <!-- FAQ Item 1 -->
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Do you offer gluten-free noodle alternatives?</span>
+                        <span class="faq-icon"><i data-lucide="plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes! While our traditional hand-pulled noodles are crafted from Hokkaido wheat flour, we offer a premium gluten-free glass noodle alternative for any of our signature broths. Please note that since we manufacture fresh wheat noodles on-site, trace amounts of cross-contamination can occur.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>What makes your 24-Hour Broth so unique?</span>
+                        <span class="faq-icon"><i data-lucide="plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Our broth is slow-simmered at a controlled rolling boil for 24 continuous hours. This high-temperature, extended process allows the marrow and collagen in the pork bones to fully dissolve, creating an emulsified, creamy, milk-white soup base rich in collagen and loaded with depth of flavor.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Do you accept table reservations, or is it walk-in only?</span>
+                        <span class="faq-icon"><i data-lucide="plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            We operate on a hybrid system. Our intimate wooden bar counter is kept open exclusively for walk-ins so travelers and ramen-enthusiasts can pop in anytime. However, our dining tables can be reserved online via the contact form or by calling us directly.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Are there vegetarian or vegan options available?</span>
+                        <span class="faq-icon"><i data-lucide="plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Absolutely! Our "Vegan Sesame Harvest" ramen is crafted from a rich base of ground roasted organic sesame paste, oat milk, and a vegetable dashi made from kombu seaweed and dried shiitake mushrooms. It comes with custom-tailored egg-free wave noodles.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-card">
+                    <button class="faq-question">
+                        <span>Do you offer takeout or delivery services?</span>
+                        <span class="faq-icon"><i data-lucide="plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, we offer takeout. To ensure you experience the ramen at its peak texture, we pack our piping hot broth in specialized double-walled thermal containers, separate from the raw toppings and cooked noodles. You just combine them at home, heat for 30 seconds, and enjoy!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Reservation Section -->
+    <section class="location-section" id="location">
+        <div class="container">
+            <div class="location-grid">
+                
+                <!-- Contact & Reservation Form -->
+                <div class="form-container scroll-reveal">
+                    <div class="section-header">
+                        <span class="section-tag">RESERVE A SEAT</span>
+                        <h2 class="section-title">Secure Your Table</h2>
+                        <p>Join us in the warm glow of our lanterns. For parties larger than 6, please call us directly.</p>
+                    </div>
+
+                    <form class="reservation-form" id="booking-form" onsubmit="handleReservationSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-name">Name</label>
+                                <input type="text" id="form-name" placeholder="E.g., Kenji Sato" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-phone">Phone Number</label>
+                                <input type="tel" id="form-phone" placeholder="E.g., (555) 123-4567" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-date">Preferred Date</label>
+                                <input type="date" id="form-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-time">Preferred Time</label>
+                                <select id="form-time" required>
+                                    <option value="" disabled selected>Select time...</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="1:00">1:00 PM</option>
+                                    <option value="5:00">5:00 PM</option>
+                                    <option value="6:00">6:00 PM</option>
+                                    <option value="7:00">7:00 PM</option>
+                                    <option value="8:00">8:00 PM</option>
+                                    <option value="9:00">9:00 PM</option>
+                                    <option value="10:00">10:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="form-guests">Guests</label>
+                                <select id="form-guests" required>
+                                    <option value="1">1 Person (Bar Counter)</option>
+                                    <option value="2" selected>2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6 People</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-dining">Dining Experience</label>
+                                <select id="form-dining">
+                                    <option value="standard">Standard Dining Table</option>
+                                    <option value="bar">Chef's Bar Counter (Watch noodles being pulled)</option>
+                                    <option value="kotatsu">Traditional Kotatsu (Low seating)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="form-notes">Special Requests (Allergies, birthday, etc.)</label>
+                            <textarea id="form-notes" placeholder="Tell us if you have any food allergies or special occasions..." rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span>Book Table</span>
+                            <i data-lucide="calendar"></i>
+                        </button>
+                    </form>
+
+                    <!-- Success State (Hidden by default) -->
+                    <div class="booking-success-message" id="booking-success">
+                        <div class="success-icon"><i data-lucide="check-circle-2"></i></div>
+                        <h3>Reservation Request Received!</h3>
+                        <p>We have sent a text message confirmation to your phone. We look forward to hosting you!</p>
+                        <button class="btn btn-outline" onclick="resetBookingForm()">Make Another Booking</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Map & Location Details -->
+                <div class="map-container-wrap scroll-reveal">
+                    <div class="map-header">
+                        <div class="map-header-info">
+                            <h3>NoodleHouse Tokyo</h3>
+                            <p><i data-lucide="map-pin"></i> 1-Chome-23 Shibakoen, Minato City, Tokyo 105-0011</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Leaflet map element -->
+                    <div id="leaflet-map"></div>
+
+                    <!-- Direct Guiding Details -->
+                    <div class="location-details-card">
+                        <div class="detail-block">
+                            <div class="detail-icon"><i data-lucide="clock"></i></div>
+                            <div class="detail-text">
+                                <h4>Operating Hours</h4>
+                                <p>Mon - Thu: 12:00 PM - 11:00 PM</p>
+                                <p>Fri - Sun: 12:00 PM - 1:00 AM (Midnight Ramen Club)</p>
+                            </div>
+                        </div>
+                        <div class="detail-block">
+                            <div class="detail-icon"><i data-lucide="compass"></i></div>
+                            <div class="detail-text">
+                                <h4>How to reach us</h4>
+                                <p>Just a 3-minute walk from Shibakoen Subway Station (Exit A3). Look for the glowing red paper lanterns outside.</p>
+                            </div>
+                        </div>
+                        <div class="detail-buttons">
+                            <a href="https://maps.google.com" target="_blank" class="btn btn-outline">
+                                <i data-lucide="navigation"></i>
+                                <span>Get Directions</span>
+                            </a>
+                            <a href="tel:+81312345678" class="btn btn-outline">
+                                <i data-lucide="phone"></i>
+                                <span>Call Shop</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-kanji">麺</span>
+                        <span class="logo-text">NOODLE<span>HOUSE</span></span>
+                    </a>
+                    <p class="footer-tagline">Crafting authentic ramen experiences. Slow food served with love and speed in our cozy, lantern-lit spaces.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-icon" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon" aria-label="Youtube"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">Our Heritage</a></li>
+                        <li><a href="#menu">Ramen Specialties</a></li>
+                        <li><a href="#offers">Ongoing Combos</a></li>
+                        <li><a href="#gallery">Visual Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Reservations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#location">Book a Table</a></li>
+                        <li><a href="#location">Group Events</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#location">Find Location</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4>Join the Midnight Club</h4>
+                    <p>Subscribe to receive secret off-menu releases, chef tasting notifications, and 10% off your first ramen visit.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </form>
+                    <span class="newsletter-success" id="newsletter-success-msg">Successfully joined! Check your inbox.</span>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 NoodleHouse Ramen Bar. All Rights Reserved. Crafted with passion.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Leaflet Map JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
