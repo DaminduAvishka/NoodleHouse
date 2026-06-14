@@ -230,6 +230,8 @@ function initNavigation() {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetSelector = link.getAttribute('href');
+            toggle.classList.remove('open');
+            mobileNav.classList.remove('active');
             scrollToSection(targetSelector);
         });
     });
